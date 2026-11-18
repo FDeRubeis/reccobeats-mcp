@@ -1,0 +1,35 @@
+[project]
+name = "reccobeats-mcp"
+version = "0.1.0"
+description = "MCP server for ReccoBeats"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "FDeRubeis", email = "fabio43210.mail@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.28.1",
+    "mcp[cli]>=2.3.0",
+    "puremagic>=2.2.1",
+]
+
+[project.scripts]
+reccobeats-mcp = "reccobeats_mcp:main"
+
+[build-system]
+requires = ["uv_build>=0.13.8,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--import-mode=importlib"
+markers = [
+    "e2e: hits the real ReccoBeats API; only runs with -m e2e",
+]
